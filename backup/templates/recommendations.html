@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usage Recommendations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <header class="page-header">
+        <a href="{{ url_for('result') }}" class="home-link">← Back to Summary</a>
+        <h1>Usage Recommendations</h1>
+        <p>Understand which tasks may suit this laptop's hardware.</p>
+    </header>
+
+    <section class="recommendation-columns">
+        <div class="recommendation-panel recommended-panel">
+            <h2>✓ Recommended For</h2>
+            <p class="panel-description">Tasks this laptop may handle suitably.</p>
+
+            <ul class="usage-list">
+                {% for item in recommended %}
+                <li><span class="list-symbol">✓</span>{{ item }}</li>
+                {% else %}
+                <li>No recommendations available.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="recommendation-panel not-recommended-panel">
+            <h2>✕ Not Recommended For</h2>
+            <p class="panel-description">Tasks that may require more powerful hardware.</p>
+
+            <ul class="usage-list">
+                {% for item in not_recommended %}
+                <li><span class="list-symbol">✕</span>{{ item }}</li>
+                {% else %}
+                <li>No limitations identified by these basic rules.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+
+    <p class="recommendation-note">
+        These suggestions are estimates based on basic hardware rules.
+        Actual performance depends on the exact processor, GPU, cooling,
+        memory configuration, and software requirements.
+    </p>
+
+    <a href="{{ url_for('result') }}" class="back-btn">Back to Summary</a>
+</div>
+</body>
+</html>

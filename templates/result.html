@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptop Analysis Summary — Smart Laptop Buying Assistant</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<header class="app-navbar">
+    <div class="container navbar-inner">
+        <a href="{{ url_for('home') }}" class="brand-logo" aria-label="SmartLaptop AI Home">
+            <div class="brand-icon">
+                <svg width="22" height="22" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="brandGradRes" x1="2" y1="2" x2="26" y2="26" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#ffffff" />
+                            <stop offset="100%" stop-color="#c7d2fe" />
+                        </linearGradient>
+                    </defs>
+                    <rect x="4" y="5" width="20" height="13" rx="2" stroke="url(#brandGradRes)" stroke-width="2.2" fill="none"/>
+                    <path d="M2 20.5H26C26 21.88 24.88 23 23.5 23H4.5C3.12 23 2 21.88 2 20.5Z" fill="url(#brandGradRes)" fill-opacity="0.9"/>
+                    <line x1="11" y1="20.5" x2="17" y2="20.5" stroke="#4338ca" stroke-width="1.8" stroke-linecap="round"/>
+                    <path d="M14 8C14 10.2 15.8 11.5 17 11.5C15.8 11.5 14 12.8 14 15C14 12.8 12.2 11.5 11 11.5C12.2 11.5 14 10.2 14 8Z" fill="#ffffff"/>
+                    <circle cx="14" cy="11.5" r="1" fill="#38bdf8"/>
+                </svg>
+            </div>
+            <span class="brand-name">SmartLaptop</span><span class="brand-ai-badge">AI</span>
+        </a>
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}" class="nav-btn-back">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span>Analyze Another Laptop</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+
+    <!-- Header Block -->
+    <div class="page-header-block">
+        <div class="page-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            Valuation & Performance Intelligence Generated
+        </div>
+        <h1>Laptop Analysis Summary</h1>
+        <p>Your personalized Machine Learning valuation and technical assessment is ready.</p>
+    </div>
+
+    <!-- Matched Laptop Identification Card -->
+    {% if laptop %}
+    <div class="matched-laptop-card">
+        <div class="matched-details">
+            <span class="matched-label">Closest Matched Catalog Model</span>
+            <div class="matched-name">{{ laptop.brand }} — {{ laptop.name }}</div>
+            <div class="matched-specs-summary">
+                <span class="spec-pill">{{ laptop.processor }}</span>
+                <span class="spec-pill">{{ laptop.ram }}</span>
+                <span class="spec-pill">{{ laptop.gpu }}</span>
+                <span class="spec-pill">{{ laptop.os }}</span>
+            </div>
+        </div>
+        <a href="{{ url_for('specifications') }}" class="btn btn-secondary">
+            <span>View Full Specs</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+        </a>
+    </div>
+    {% endif %}
+
+    <!-- Core Metrics Row (Price, Rating, Verdict) -->
+    <section class="results-stats-row dominant-metrics-row">
+        <!-- Predicted Price Card -->
+        <div class="summary-stat-card price-card dominant-card">
+            <div class="stat-card-badge-row">
+                <span class="stat-pill price-pill">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="1" x2="12" y2="23"></line>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
+                    ML Price Valuation
+                </span>
+            </div>
+            <div class="stat-card-label">Predicted Market Price</div>
+            <div class="stat-card-value price-val">₹{{ "{:,.0f}".format(predicted_price) }}</div>
+            <div class="stat-card-note">
+                <span class="status-indicator price-dot"></span>
+                Estimated market valuation via ML regression
+            </div>
+        </div>
+
+        <!-- Specification Rating Card -->
+        <div class="summary-stat-card rating-card dominant-card">
+            <div class="stat-card-badge-row">
+                <span class="stat-pill rating-pill">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                    Hardware Score
+                </span>
+            </div>
+            <div class="stat-card-label">Specification Rating</div>
+            <div class="stat-card-value rating-val">
+                {{ "%.1f"|format(laptop.rating) }}<span class="scale"> / 5.0 ★</span>
+            </div>
+            <div class="stat-card-note">
+                <span class="status-indicator rating-dot"></span>
+                Standardized hardware tier score
+            </div>
+        </div>
+
+        <!-- Buying Verdict Card -->
+        <div class="summary-stat-card verdict-card dominant-card">
+            <div class="stat-card-badge-row">
+                <span class="stat-pill verdict-pill">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    AI Recommendation
+                </span>
+            </div>
+            <div class="stat-card-label">Buying Verdict</div>
+            <div class="stat-card-value verdict-val">{{ verdict }}</div>
+            <div class="stat-card-note">
+                <span class="status-indicator verdict-dot"></span>
+                Overall suitability & hardware balance
+            </div>
+        </div>
+    </section>
+
+    <!-- Prominent Three Navigation Cards -->
+    <section class="nav-actions-section">
+        <h2 class="nav-actions-title">Explore Detailed Intelligence</h2>
+        <div class="nav-actions-grid">
+
+            <!-- Card 1: Specifications -->
+            <a href="{{ url_for('specifications') }}" class="action-nav-card">
+                <div>
+                    <div class="action-card-icon">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="8" y1="6" x2="21" y2="6"></line>
+                            <line x1="8" y1="12" x2="21" y2="12"></line>
+                            <line x1="8" y1="18" x2="21" y2="18"></line>
+                            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                        </svg>
+                    </div>
+                    <div class="action-card-content">
+                        <h3>View Laptop Specifications</h3>
+                        <p>Explore the complete hardware and software details.</p>
+                    </div>
+                </div>
+                <div class="action-card-footer">
+                    <span>View Specifications</span>
+                    <span class="arrow">→</span>
+                </div>
+            </a>
+
+            <!-- Card 2: Recommendations -->
+            <a href="{{ url_for('recommendations') }}" class="action-nav-card">
+                <div>
+                    <div class="action-card-icon">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <circle cx="12" cy="12" r="6"></circle>
+                            <circle cx="12" cy="12" r="2"></circle>
+                        </svg>
+                    </div>
+                    <div class="action-card-content">
+                        <h3>View Usage Recommendations</h3>
+                        <p>Discover suitable tasks and workloads for this laptop.</p>
+                    </div>
+                </div>
+                <div class="action-card-footer">
+                    <span>View Recommendations</span>
+                    <span class="arrow">→</span>
+                </div>
+            </a>
+
+            <!-- Card 3: Similar Laptops -->
+            <a href="{{ url_for('similar_laptops') }}" class="action-nav-card">
+                <div>
+                    <div class="action-card-icon">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="2" y1="20" x2="22" y2="20"></line>
+                        </svg>
+                    </div>
+                    <div class="action-card-content">
+                        <h3>Explore Similar Laptops</h3>
+                        <p>Compare other available models.</p>
+                    </div>
+                </div>
+                <div class="action-card-footer">
+                    <span>Compare Laptops</span>
+                    <span class="arrow">→</span>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- Bottom Actions -->
+    <div class="page-bottom-actions">
+        <a href="{{ url_for('home') }}" class="btn btn-primary btn-lg">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span>Analyze Another Laptop</span>
+        </a>
+    </div>
+
+</main>
+
+<footer class="app-footer">
+    <div class="container footer-inner">
+        <div>
+            <strong>Smart Laptop Buying Assistant</strong> — AI-Powered Intelligence Platform
+        </div>
+        <div>
+            Valuation generated via trained Machine Learning pipeline.
+        </div>
+    </div>
+</footer>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

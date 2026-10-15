@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Laptop Buying Assistant</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}">
+
+
+</head>
+
+<body>
+
+<div class="container">
+
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <span class="hero-badge">
+            AI Powered Laptop Intelligence Platform
+        </span>
+
+        <h1>Smart Laptop<br><span>Buying Assistant</span></h1>
+
+        <p class="hero-subtitle">
+            Predict Laptop Price, Discover Specifications,
+            Analyze Performance and Get Intelligent
+            Buying Recommendations using Machine Learning.
+        </p>
+
+        <div class="hero-stats">
+
+            <div class="stat-box">
+                <h3>890+</h3>
+                <p>Laptops Analysed</p>
+            </div>
+
+            <div class="stat-box">
+                <h3>86%</h3>
+                <p>Price Prediction Accuracy</p>
+            </div>
+
+            <div class="stat-box">
+                <h3>5★</h3>
+                <p>Specification Rating</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="form-section">
+
+    <div class="form-card">
+
+        <div class="card-header">
+
+            <h2>Analyze Your Laptop</h2>
+
+            <p>
+                Provide a few details and get complete laptop insights.
+            </p>
+
+        </div>
+
+        <form action="{{ url_for('predict') }}" method="POST">
+
+            <div class="form-grid">
+
+                <div class="input-group">
+
+                    <label>Brand</label>
+
+                    <select name="brand" required>
+
+                        <option value="">Select Brand</option>
+
+                        {% for brand in brands %}
+
+                        <option value="{{ brand }}">
+                            {{ brand }}
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>RAM</label>
+
+                    <select name="ram" required>
+
+                        <option value="">Select RAM</option>
+
+                        {% for ram in ram_list %}
+
+                        <option value="{{ ram }}">
+                         {{ ram }} GB
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Processor</label>
+
+                    <select name="processor" required>
+
+                        <option value="">Select Processor</option>
+
+                        {% for processor in processors %}
+
+                        <option value="{{ processor }}">
+                            {{ processor }}
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Operating System</label>
+
+                    <select name="os" required>
+
+                        <option value="">Select OS</option>
+
+                        {% for os in os_list %}
+
+                        <option value="{{ os }}">
+                            {{ os }}
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <button type="submit" class="analyze-btn">
+
+                Analyze Laptop
+
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+<section class="highlights">
+
+    <div class="highlight-card">
+
+        <h3>Machine Learning Price Estimation</h3>
+
+        <p>
+            Predict laptop market value using machine learning models.
+        </p>
+
+    </div>
+
+    <div class="highlight-card">
+
+        <h3>Specification Intelligence</h3>
+
+        <p>
+            Analyze hardware capability and generate performance ratings.
+        </p>
+
+    </div>
+
+    <div class="highlight-card">
+
+        <h3>Performance Suitability Analysis</h3>
+
+        <p>
+            Discover the workloads and tasks best suited for the laptop.
+        </p>
+
+    </div>
+
+    <div class="highlight-card">
+
+        <h3>Smart Purchase Recommendations</h3>
+
+        <p>
+            Get AI-driven guidance before making a buying decision.
+        </p>
+
+    </div>
+
+</section>
+
+
+</div>
+
+</body>
+
+</html>

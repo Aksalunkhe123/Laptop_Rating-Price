@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Similar Laptops</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <header class="page-header">
+        <a href="{{ url_for('result') }}" class="home-link">← Back to Summary</a>
+        <h1>Similar Laptops</h1>
+        <p>Compare other laptop models and their listed prices.</p>
+    </header>
+
+    {% if similar_laptops %}
+    <section class="similar-grid">
+        {% for item in similar_laptops %}
+        <article class="similar-card">
+            <span class="similar-brand">{{ item.brand }}</span>
+            <h3>{{ item.name }}</h3>
+
+            <div class="similar-price">
+                {% if item.price > 0 %}
+                    ₹{{ "{:,.0f}".format(item.price) }}
+                {% else %}
+                    Price unavailable
+                {% endif %}
+            </div>
+
+            <div class="similar-detail">
+                <span>Processor</span>
+                <strong>{{ item.processor }}</strong>
+            </div>
+
+            <div class="similar-detail">
+                <span>RAM</span>
+                <strong>{{ item.ram }}</strong>
+            </div>
+
+            <div class="similar-detail">
+                <span>Graphics</span>
+                <strong>{{ item.gpu }}</strong>
+            </div>
+
+            <div class="similar-detail">
+                <span>Specification Rating</span>
+                <strong>{{ "%.1f"|format(item.rating) }}/5</strong>
+            </div>
+        </article>
+        {% endfor %}
+    </section>
+    {% else %}
+        <div class="empty-state">
+            <h3>No similar laptops found</h3>
+            <p>Try analyzing another laptop to explore available models.</p>
+        </div>
+    {% endif %}
+
+    <a href="{{ url_for('result') }}" class="back-btn">Back to Summary</a>
+</div>
+</body>
+</html>

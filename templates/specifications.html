@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptop Specifications Dashboard — Smart Laptop Buying Assistant</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<header class="app-navbar">
+    <div class="container navbar-inner">
+        <a href="{{ url_for('home') }}" class="brand-logo" aria-label="SmartLaptop AI Home">
+            <div class="brand-icon">
+                <svg width="22" height="22" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="brandGradSpec" x1="2" y1="2" x2="26" y2="26" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#ffffff" />
+                            <stop offset="100%" stop-color="#c7d2fe" />
+                        </linearGradient>
+                    </defs>
+                    <rect x="4" y="5" width="20" height="13" rx="2" stroke="url(#brandGradSpec)" stroke-width="2.2" fill="none"/>
+                    <path d="M2 20.5H26C26 21.88 24.88 23 23.5 23H4.5C3.12 23 2 21.88 2 20.5Z" fill="url(#brandGradSpec)" fill-opacity="0.9"/>
+                    <line x1="11" y1="20.5" x2="17" y2="20.5" stroke="#4338ca" stroke-width="1.8" stroke-linecap="round"/>
+                    <path d="M14 8C14 10.2 15.8 11.5 17 11.5C15.8 11.5 14 12.8 14 15C14 12.8 12.2 11.5 11 11.5C12.2 11.5 14 10.2 14 8Z" fill="#ffffff"/>
+                    <circle cx="14" cy="11.5" r="1" fill="#38bdf8"/>
+                </svg>
+            </div>
+            <span class="brand-name">SmartLaptop</span><span class="brand-ai-badge">AI</span>
+        </a>
+        <div class="nav-links">
+            <a href="{{ url_for('result') }}" class="nav-btn-back">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span>Back to Summary</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+
+    <!-- Header Block -->
+    <div class="page-header-block">
+        <div class="page-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="8" y1="6" x2="21" y2="6"></line>
+                <line x1="8" y1="12" x2="21" y2="12"></line>
+                <line x1="8" y1="18" x2="21" y2="18"></line>
+                <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                <line x1="3" y1="18" x2="3.01" y2="18"></line>
+            </svg>
+            Technical Hardware Breakdown
+        </div>
+        <h1>{{ laptop.brand }} — {{ laptop.name }}</h1>
+        <p>Complete component-level specifications and hardware architecture details.</p>
+    </div>
+
+    <!-- Specifications Categorized Grid Dashboard -->
+    <section class="spec-dashboard">
+        <div class="spec-category-grid">
+
+            <!-- Category 1: Processor & Architecture -->
+            <div class="spec-category-card">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                            <rect x="9" y="9" width="6" height="6"></rect>
+                            <line x1="9" y1="1" x2="9" y2="4"></line>
+                            <line x1="15" y1="1" x2="15" y2="4"></line>
+                            <line x1="9" y1="20" x2="9" y2="23"></line>
+                            <line x1="15" y1="20" x2="15" y2="23"></line>
+                            <line x1="20" y1="9" x2="23" y2="9"></line>
+                            <line x1="20" y1="14" x2="23" y2="14"></line>
+                            <line x1="1" y1="9" x2="4" y2="9"></line>
+                            <line x1="1" y1="14" x2="4" y2="14"></line>
+                        </svg>
+                    </div>
+                    <h3>Processor & CPU Architecture</h3>
+                </div>
+                <div class="category-items">
+                    <div class="spec-field">
+                        <span class="spec-field-label">Processor</span>
+                        <span class="spec-field-value">{{ laptop.processor }}</span>
+                    </div>
+                    <div class="spec-field">
+                        <span class="spec-field-label">Core / Thread Details</span>
+                        <span class="spec-field-value">{{ laptop.cpu }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 2: Memory (RAM) -->
+            <div class="spec-category-card">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 19v-3"></path><path d="M10 19v-3"></path><path d="M14 19v-3"></path><path d="M18 19v-3"></path>
+                            <rect x="2" y="5" width="20" height="11" rx="2"></rect>
+                        </svg>
+                    </div>
+                    <h3>System Memory (RAM)</h3>
+                </div>
+                <div class="category-items">
+                    <div class="spec-field">
+                        <span class="spec-field-label">Installed RAM</span>
+                        <span class="spec-field-value">{{ laptop.ram }}</span>
+                    </div>
+                    <div class="spec-field">
+                        <span class="spec-field-label">Memory Generation</span>
+                        <span class="spec-field-value">{{ laptop.ram_type }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 3: Storage -->
+            <div class="spec-category-card">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                        </svg>
+                    </div>
+                    <h3>Storage Drives</h3>
+                </div>
+                <div class="category-items">
+                    <div class="spec-field">
+                        <span class="spec-field-label">Capacity</span>
+                        <span class="spec-field-value">{{ laptop.storage }}</span>
+                    </div>
+                    <div class="spec-field">
+                        <span class="spec-field-label">Drive Technology</span>
+                        <span class="spec-field-value">{{ laptop.storage_type }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 4: Graphics & Video -->
+            <div class="spec-category-card">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                            <polyline points="2 17 12 22 22 17"></polyline>
+                            <polyline points="2 12 12 17 22 12"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Graphics & GPU</h3>
+                </div>
+                <div class="category-items" style="grid-template-columns: 1fr;">
+                    <div class="spec-field">
+                        <span class="spec-field-label">Graphics Processing Unit</span>
+                        <span class="spec-field-value">{{ laptop.gpu }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 5: Display & Screen -->
+            <div class="spec-category-card">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                    </div>
+                    <h3>Display & Resolution</h3>
+                </div>
+                <div class="category-items">
+                    <div class="spec-field">
+                        <span class="spec-field-label">Diagonal Size</span>
+                        <span class="spec-field-value">{{ laptop.display_size }} inches</span>
+                    </div>
+                    <div class="spec-field">
+                        <span class="spec-field-label">Native Resolution</span>
+                        <span class="spec-field-value">{{ laptop.resolution_width }} × {{ laptop.resolution_height }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 6: Operating System & Warranty -->
+            <div class="spec-category-card">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </div>
+                    <h3>Software & Warranty Coverage</h3>
+                </div>
+                <div class="category-items">
+                    <div class="spec-field">
+                        <span class="spec-field-label">Pre-installed OS</span>
+                        <span class="spec-field-value">{{ laptop.os }}</span>
+                    </div>
+                    <div class="spec-field">
+                        <span class="spec-field-label">Warranty</span>
+                        <span class="spec-field-value">{{ laptop.warranty }} Year(s)</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Navigation Action Bar -->
+    <div class="page-bottom-actions">
+        <a href="{{ url_for('result') }}" class="btn btn-secondary btn-lg">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span>Back to Analysis Summary</span>
+        </a>
+        <a href="{{ url_for('recommendations') }}" class="btn btn-primary btn-lg">
+            <span>View Usage Recommendations</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+        </a>
+        <a href="{{ url_for('similar_laptops') }}" class="btn btn-secondary btn-lg">
+            <span>Explore Similar Laptops</span>
+        </a>
+    </div>
+
+</main>
+
+<footer class="app-footer">
+    <div class="container footer-inner">
+        <div>
+            <strong>Smart Laptop Buying Assistant</strong> — Technical Intelligence Dashboard
+        </div>
+        <div>
+            Hardware verified against manufacturer specification sheets.
+        </div>
+    </div>
+</footer>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptop Analysis Summary</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <header class="page-header">
+        <a href="{{ url_for('home') }}" class="home-link">← Home</a>
+        <h1>Laptop Analysis Summary</h1>
+        <p>Your personalized laptop analysis is ready.</p>
+    </header>
+
+    <section class="stats-grid">
+        <div class="stat-card price">
+            <p>Predicted Price</p>
+            <h2>₹{{ "{:,.0f}".format(predicted_price) }}</h2>
+        </div>
+
+        <div class="stat-card rating">
+            <p>Specification Rating</p>
+            <h2>{{ "%.1f"|format(laptop.rating) }}/5</h2>
+        </div>
+
+        <div class="stat-card verdict">
+            <p>Buying Verdict</p>
+            <h2>{{ verdict }}</h2>
+        </div>
+    </section>
+
+    <section class="navigation-grid">
+        <a href="{{ url_for('specifications') }}" class="navigation-card">
+            <span class="nav-icon">⚙</span>
+            <h3>Laptop Specifications</h3>
+            <p>View the laptop's technical details.</p>
+            <span class="nav-action">View Specifications →</span>
+        </a>
+
+        <a href="{{ url_for('recommendations') }}" class="navigation-card">
+            <span class="nav-icon">✓</span>
+            <h3>Usage Recommendations</h3>
+            <p>Compare suitable and less suitable workloads.</p>
+            <span class="nav-action">View Recommendations →</span>
+        </a>
+
+        <a href="{{ url_for('similar_laptops') }}" class="navigation-card">
+            <span class="nav-icon">▤</span>
+            <h3>Similar Laptops</h3>
+            <p>Explore other models for comparison.</p>
+            <span class="nav-action">Compare Laptops →</span>
+        </a>
+    </section>
+
+    <a href="{{ url_for('home') }}" class="back-btn">Analyze Another Laptop</a>
+</div>
+</body>
+</html>

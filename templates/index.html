@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Laptop Buying Assistant — AI-Powered Intelligence Platform</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<!-- Global SaaS Navigation Bar -->
+<header class="app-navbar">
+    <div class="container navbar-inner">
+        <a href="{{ url_for('home') }}" class="brand-logo" aria-label="SmartLaptop AI Home">
+            <div class="brand-icon">
+                <svg width="22" height="22" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="brandGrad" x1="2" y1="2" x2="26" y2="26" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#ffffff" />
+                            <stop offset="100%" stop-color="#c7d2fe" />
+                        </linearGradient>
+                    </defs>
+                    <rect x="4" y="5" width="20" height="13" rx="2" stroke="url(#brandGrad)" stroke-width="2.2" fill="none"/>
+                    <path d="M2 20.5H26C26 21.88 24.88 23 23.5 23H4.5C3.12 23 2 21.88 2 20.5Z" fill="url(#brandGrad)" fill-opacity="0.9"/>
+                    <line x1="11" y1="20.5" x2="17" y2="20.5" stroke="#4338ca" stroke-width="1.8" stroke-linecap="round"/>
+                    <path d="M14 8C14 10.2 15.8 11.5 17 11.5C15.8 11.5 14 12.8 14 15C14 12.8 12.2 11.5 11 11.5C12.2 11.5 14 10.2 14 8Z" fill="#ffffff"/>
+                    <circle cx="14" cy="11.5" r="1" fill="#38bdf8"/>
+                </svg>
+            </div>
+            <span class="brand-name">SmartLaptop</span><span class="brand-ai-badge">AI</span>
+        </a>
+        <div class="nav-links">
+            <a href="#analyze-form" class="btn btn-primary">
+                Analyze Laptop
+            </a>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-layout">
+            <div class="hero-content">
+                <div class="hero-eyebrow">
+                    <span class="pulse-dot"></span>
+                    AI-POWERED LAPTOP INTELLIGENCE PLATFORM
+                </div>
+
+                <h1>
+                    Smart Laptop<br>
+                    <span class="gradient-text">Buying Assistant</span>
+                </h1>
+
+                <p class="hero-description">
+                    Predict Laptop Prices, Explore Specifications, Evaluate Performance and Get Intelligent Buying Recommendations using Machine Learning.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#analyze-form" class="btn btn-primary btn-lg">
+                        <span>Find Your Ideal Laptop</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <polyline points="19 12 12 19 5 12"></polyline>
+                        </svg>
+                    </a>
+                    <a href="#platform-metrics" class="btn btn-secondary btn-lg">
+                        <span>Platform Benchmarks</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Minimal Laptop Visual -->
+            <div class="hero-visual">
+                <div class="laptop-visual-wrapper">
+                    <!-- Soft Ambient Glow -->
+                    <div class="laptop-ambient-glow"></div>
+
+                    <!-- Floating Spec Chip: Top Right -->
+                    <div class="floating-spec-chip chip-top-right">
+                        <span class="chip-icon chip-icon-neural">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+                            </svg>
+                        </span>
+                        <span class="chip-text">Neural Price Engine</span>
+                    </div>
+
+                    <!-- Sleek Laptop Device -->
+                    <div class="laptop-device">
+                        <!-- Screen Bezel -->
+                        <div class="laptop-screen-bezel">
+                            <div class="laptop-camera-dot"></div>
+                            <div class="laptop-screen-display">
+                                <svg class="screen-ai-graphic" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <linearGradient id="auroraGrad" x1="0" y1="0" x2="400" y2="240" gradientUnits="userSpaceOnUse">
+                                            <stop offset="0%" stop-color="#4f46e5" stop-opacity="0.14" />
+                                            <stop offset="50%" stop-color="#2563eb" stop-opacity="0.08" />
+                                            <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0.16" />
+                                        </linearGradient>
+                                        <linearGradient id="lineGrad" x1="50" y1="120" x2="350" y2="120" gradientUnits="userSpaceOnUse">
+                                            <stop offset="0%" stop-color="#6366f1" stop-opacity="0.25" />
+                                            <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.85" />
+                                            <stop offset="100%" stop-color="#6366f1" stop-opacity="0.25" />
+                                        </linearGradient>
+                                    </defs>
+                                    <rect width="400" height="240" rx="6" fill="url(#auroraGrad)" />
+                                    <!-- Coordinate Grid Lines -->
+                                    <path d="M0 60 H400 M0 120 H400 M0 180 H400 M80 0 V240 M160 0 V240 M240 0 V240 M320 0 V240" stroke="#6366f1" stroke-opacity="0.07" stroke-width="1" />
+                                    <!-- Neural Waveform -->
+                                    <path d="M40 145 C90 145, 120 85, 170 100 C220 115, 250 160, 300 130 C330 110, 350 125, 370 125" stroke="url(#lineGrad)" stroke-width="2.5" stroke-linecap="round" fill="none" />
+                                    <!-- Spark Node -->
+                                    <circle cx="200" cy="115" r="4.5" fill="#38bdf8" />
+                                    <circle cx="200" cy="115" r="14" stroke="#38bdf8" stroke-opacity="0.3" stroke-width="1.5" />
+                                </svg>
+                            </div>
+                        </div>
+                        <!-- Base Deck -->
+                        <div class="laptop-base-deck">
+                            <div class="laptop-notch"></div>
+                        </div>
+                        <div class="laptop-bottom-lip"></div>
+                    </div>
+
+                    <!-- Floating Spec Chip: Bottom Left -->
+                    <div class="floating-spec-chip chip-bottom-left">
+                        <span class="chip-icon chip-icon-hardware">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                                <rect x="9" y="9" width="6" height="6"></rect>
+                                <line x1="9" y1="1" x2="9" y2="4"></line>
+                                <line x1="15" y1="1" x2="15" y2="4"></line>
+                                <line x1="9" y1="20" x2="9" y2="23"></line>
+                                <line x1="15" y1="20" x2="15" y2="23"></line>
+                                <line x1="20" y1="9" x2="23" y2="9"></line>
+                                <line x1="20" y1="14" x2="23" y2="14"></line>
+                                <line x1="1" y1="9" x2="4" y2="9"></line>
+                                <line x1="1" y1="14" x2="4" y2="14"></line>
+                            </svg>
+                        </span>
+                        <span class="chip-text">Hardware Intelligence</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Metrics / Statistics Section -->
+    <section id="platform-metrics" class="metrics-strip">
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-icon-wrap">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                        <line x1="2" y1="20" x2="22" y2="20"></line>
+                    </svg>
+                </div>
+                <div class="metric-data">
+                    <h3>890+</h3>
+                    <div class="metric-title">Laptops Analysed</div>
+                    <div class="metric-subtitle">Comprehensive market catalog records</div>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon-wrap">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="m9 12 2 2 4-4"></path>
+                    </svg>
+                </div>
+                <div class="metric-data">
+                    <h3>86%</h3>
+                    <div class="metric-title">Price Prediction Accuracy</div>
+                    <div class="metric-subtitle">Evaluated on historical retail valuation data</div>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon-wrap">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                </div>
+                <div class="metric-data">
+                    <h3>Up to 5.0</h3>
+                    <div class="metric-title">Specification Rating Scale</div>
+                    <div class="metric-subtitle">Standardized score measured out of 5 stars</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Laptop Analysis Form Section -->
+    <section id="analyze-form" class="form-section">
+        <div class="form-card">
+            <div class="form-header">
+                <h2>Find Your Ideal Laptop</h2>
+                <p>Select your desired hardware configurations to generate instant ML price valuations, complete technical specifications and workload suitability.</p>
+            </div>
+
+            <form action="{{ url_for('predict') }}" method="POST">
+                <div class="form-grid">
+
+                    <!-- Brand Input -->
+                    <div class="input-field-group">
+                        <label class="field-label" for="brand-select">
+                            <span>Laptop Brand</span>
+                            <span class="req">Required</span>
+                        </label>
+                        <div class="select-wrapper">
+                            <span class="select-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                                    <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                                </svg>
+                            </span>
+                            <select id="brand-select" name="brand" class="select-control" required>
+                                <option value="">Select Brand</option>
+                                {% for brand in brands %}
+                                <option value="{{ brand }}">{{ brand }}</option>
+                                {% endfor %}
+                            </select>
+                            <span class="select-chevron">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- RAM Input -->
+                    <div class="input-field-group">
+                        <label class="field-label" for="ram-select">
+                            <span>System Memory (RAM)</span>
+                            <span class="req">Required</span>
+                        </label>
+                        <div class="select-wrapper">
+                            <span class="select-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M6 19v-3"></path><path d="M10 19v-3"></path><path d="M14 19v-3"></path><path d="M18 19v-3"></path>
+                                    <rect x="2" y="5" width="20" height="11" rx="2"></rect>
+                                </svg>
+                            </span>
+                            <select id="ram-select" name="ram" class="select-control" required>
+                                <option value="">Select RAM</option>
+                                {% for ram in ram_list %}
+                                <option value="{{ ram }}">{{ ram }} GB</option>
+                                {% endfor %}
+                            </select>
+                            <span class="select-chevron">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Processor Input -->
+                    <div class="input-field-group">
+                        <label class="field-label" for="proc-select">
+                            <span>Processor (CPU)</span>
+                            <span class="req">Required</span>
+                        </label>
+                        <div class="select-wrapper">
+                            <span class="select-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                                    <rect x="9" y="9" width="6" height="6"></rect>
+                                    <line x1="9" y1="1" x2="9" y2="4"></line>
+                                    <line x1="15" y1="1" x2="15" y2="4"></line>
+                                    <line x1="9" y1="20" x2="9" y2="23"></line>
+                                    <line x1="15" y1="20" x2="15" y2="23"></line>
+                                    <line x1="20" y1="9" x2="23" y2="9"></line>
+                                    <line x1="20" y1="14" x2="23" y2="14"></line>
+                                    <line x1="1" y1="9" x2="4" y2="9"></line>
+                                    <line x1="1" y1="14" x2="4" y2="14"></line>
+                                </svg>
+                            </span>
+                            <select id="proc-select" name="processor" class="select-control" required>
+                                <option value="">Select Processor</option>
+                                {% for processor in processors %}
+                                <option value="{{ processor }}">{{ processor }}</option>
+                                {% endfor %}
+                            </select>
+                            <span class="select-chevron">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Operating System Input -->
+                    <div class="input-field-group">
+                        <label class="field-label" for="os-select">
+                            <span>Operating System</span>
+                            <span class="req">Required</span>
+                        </label>
+                        <div class="select-wrapper">
+                            <span class="select-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="4 17 10 11 4 5"></polyline>
+                                    <line x1="12" y1="19" x2="20" y2="19"></line>
+                                </svg>
+                            </span>
+                            <select id="os-select" name="os" class="select-control" required>
+                                <option value="">Select OS</option>
+                                {% for os in os_list %}
+                                <option value="{{ os }}">{{ os }}</option>
+                                {% endfor %}
+                            </select>
+                            <span class="select-chevron">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-submit-row">
+                    <button type="submit" class="analyze-submit-btn">
+                        <svg class="spinner-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
+                            <path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"></path>
+                        </svg>
+                        <span class="btn-text">Analyze Laptop</span>
+                        <svg class="btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Transformed Platform Highlights Section -->
+    <section class="highlights-section">
+        <div class="highlights-grid">
+            <div class="highlight-box feat-price">
+                <div class="highlight-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                        <polyline points="17 6 23 6 23 12"></polyline>
+                    </svg>
+                </div>
+                <h3>Machine Learning Price Estimation</h3>
+                <p>Predict laptop market value accurately using trained ensemble regression pipelines and catalog patterns.</p>
+            </div>
+
+            <div class="highlight-box feat-specs">
+                <div class="highlight-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                        <rect x="9" y="9" width="6" height="6"></rect>
+                        <line x1="9" y1="1" x2="9" y2="4"></line>
+                        <line x1="15" y1="1" x2="15" y2="4"></line>
+                        <line x1="9" y1="20" x2="9" y2="23"></line>
+                        <line x1="15" y1="20" x2="15" y2="23"></line>
+                        <line x1="20" y1="9" x2="23" y2="9"></line>
+                        <line x1="20" y1="14" x2="23" y2="14"></line>
+                        <line x1="1" y1="9" x2="4" y2="9"></line>
+                        <line x1="1" y1="14" x2="4" y2="14"></line>
+                    </svg>
+                </div>
+                <h3>Specification Intelligence</h3>
+                <p>Analyze component hardware capability across processor architecture, memory, storage and display resolution.</p>
+            </div>
+
+            <div class="highlight-box feat-perf">
+                <div class="highlight-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                    </svg>
+                </div>
+                <h3>Performance Suitability Analysis</h3>
+                <p>Evaluate system suitability across everyday computing, programming, gaming, data science and 4K creative workflows.</p>
+            </div>
+
+            <div class="highlight-box feat-rec">
+                <div class="highlight-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 11l3 3L22 4"></path>
+                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                    </svg>
+                </div>
+                <h3>Smart Purchase Recommendations</h3>
+                <p>Compare closely matched catalog alternatives within the same budget bracket and brand tier before making decisions.</p>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="app-footer">
+    <div class="container footer-inner">
+        <div>
+            <strong>Smart Laptop Buying Assistant</strong> — AI-Powered Laptop Valuation & Decision Platform
+        </div>
+        <div>
+            Trained on 890+ laptop specifications and real pricing data.
+        </div>
+    </div>
+</footer>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

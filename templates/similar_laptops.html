@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Similar Laptops Comparison — Smart Laptop Buying Assistant</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<header class="app-navbar">
+    <div class="container navbar-inner">
+        <a href="{{ url_for('home') }}" class="brand-logo" aria-label="SmartLaptop AI Home">
+            <div class="brand-icon">
+                <svg width="22" height="22" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="brandGradSim" x1="2" y1="2" x2="26" y2="26" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#ffffff" />
+                            <stop offset="100%" stop-color="#c7d2fe" />
+                        </linearGradient>
+                    </defs>
+                    <rect x="4" y="5" width="20" height="13" rx="2" stroke="url(#brandGradSim)" stroke-width="2.2" fill="none"/>
+                    <path d="M2 20.5H26C26 21.88 24.88 23 23.5 23H4.5C3.12 23 2 21.88 2 20.5Z" fill="url(#brandGradSim)" fill-opacity="0.9"/>
+                    <line x1="11" y1="20.5" x2="17" y2="20.5" stroke="#4338ca" stroke-width="1.8" stroke-linecap="round"/>
+                    <path d="M14 8C14 10.2 15.8 11.5 17 11.5C15.8 11.5 14 12.8 14 15C14 12.8 12.2 11.5 11 11.5C12.2 11.5 14 10.2 14 8Z" fill="#ffffff"/>
+                    <circle cx="14" cy="11.5" r="1" fill="#38bdf8"/>
+                </svg>
+            </div>
+            <span class="brand-name">SmartLaptop</span><span class="brand-ai-badge">AI</span>
+        </a>
+        <div class="nav-links">
+            <a href="{{ url_for('result') }}" class="nav-btn-back">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span>Back to Summary</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+
+    <!-- Header Block -->
+    <div class="page-header-block">
+        <div class="page-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="2" y1="20" x2="22" y2="20"></line>
+            </svg>
+            Market Catalog Comparison
+        </div>
+        <h1>Similar Laptops</h1>
+        <p>Explore closely matched laptop alternatives in the catalog within comparable price and brand tiers.</p>
+    </div>
+
+    <!-- Similar Laptop Product Cards Grid -->
+    <section class="similar-catalog">
+        <div class="similar-grid">
+            {% if similar_laptops %}
+                {% for item in similar_laptops %}
+                <article class="laptop-card">
+                    <div class="laptop-card-top">
+                        <span class="card-brand-tag">{{ item.brand }}</span>
+                        <h3>{{ item.name }}</h3>
+
+                        <div class="laptop-price-tag">
+                            {% if item.price > 0 %}
+                                ₹{{ "{:,.0f}".format(item.price) }}
+                            {% else %}
+                                Price Unavailable
+                            {% endif %}
+                        </div>
+
+                        <div class="laptop-specs-list">
+                            <div class="spec-row-item">
+                                <span class="spec-label">Processor</span>
+                                <span class="spec-val" title="{{ item.processor }}">{{ item.processor }}</span>
+                            </div>
+                            <div class="spec-row-item">
+                                <span class="spec-label">Memory (RAM)</span>
+                                <span class="spec-val">{{ item.ram }}</span>
+                            </div>
+                            <div class="spec-row-item">
+                                <span class="spec-label">Graphics (GPU)</span>
+                                <span class="spec-val" title="{{ item.gpu }}">{{ item.gpu }}</span>
+                            </div>
+                            <div class="spec-row-item">
+                                <span class="spec-label">Spec Rating</span>
+                                <span class="spec-val" style="color: var(--primary);">{{ "%.1f"|format(item.rating) }} / 5.0 ★</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
+            {% else %}
+                <div class="empty-state-card">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color: var(--slate-400); margin-bottom: 16px;">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <h3>No Similar Models Found</h3>
+                    <p>No other models directly match this filter criteria in the current database catalog.</p>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- Navigation Action Bar -->
+    <div class="page-bottom-actions">
+        <a href="{{ url_for('result') }}" class="btn btn-secondary btn-lg">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span>Back to Analysis Summary</span>
+        </a>
+        <a href="{{ url_for('specifications') }}" class="btn btn-secondary btn-lg">
+            <span>View Laptop Specifications</span>
+        </a>
+        <a href="{{ url_for('recommendations') }}" class="btn btn-secondary btn-lg">
+            <span>View Usage Recommendations</span>
+        </a>
+        <a href="{{ url_for('home') }}" class="btn btn-primary btn-lg">
+            <span>Analyze Another Laptop</span>
+        </a>
+    </div>
+
+</main>
+
+<footer class="app-footer">
+    <div class="container footer-inner">
+        <div>
+            <strong>Smart Laptop Buying Assistant</strong> — Market Comparison Catalog
+        </div>
+        <div>
+            Sorted by nearest price difference relative to estimated market value.
+        </div>
+    </div>
+</footer>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptop Specifications</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <header class="page-header">
+        <a href="{{ url_for('result') }}" class="home-link">← Back to Summary</a>
+        <h1>Laptop Specifications</h1>
+        <p>Technical details of the selected laptop.</p>
+    </header>
+
+    <section class="spec-grid">
+        <div class="spec-card"><span>Brand</span><h3>{{ laptop.brand }}</h3></div>
+        <div class="spec-card"><span>Model</span><h3>{{ laptop.name }}</h3></div>
+        <div class="spec-card"><span>Processor</span><h3>{{ laptop.processor }}</h3></div>
+        <div class="spec-card"><span>CPU Details</span><h3>{{ laptop.cpu }}</h3></div>
+        <div class="spec-card"><span>RAM</span><h3>{{ laptop.ram }}</h3></div>
+        <div class="spec-card"><span>RAM Type</span><h3>{{ laptop.ram_type }}</h3></div>
+        <div class="spec-card"><span>Storage</span><h3>{{ laptop.storage }}</h3></div>
+        <div class="spec-card"><span>Storage Type</span><h3>{{ laptop.storage_type }}</h3></div>
+        <div class="spec-card"><span>Graphics Card</span><h3>{{ laptop.gpu }}</h3></div>
+        <div class="spec-card"><span>Display Size</span><h3>{{ laptop.display_size }}</h3></div>
+        <div class="spec-card">
+            <span>Resolution</span>
+            <h3>{{ laptop.resolution_width }} × {{ laptop.resolution_height }}</h3>
+        </div>
+        <div class="spec-card"><span>Operating System</span><h3>{{ laptop.os }}</h3></div>
+        <div class="spec-card"><span>Warranty</span><h3>{{ laptop.warranty }}</h3></div>
+    </section>
+
+    <a href="{{ url_for('result') }}" class="back-btn">Back to Summary</a>
+</div>
+</body>
+</html>

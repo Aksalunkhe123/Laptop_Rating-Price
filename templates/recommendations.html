@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workload Recommendations — Smart Laptop Buying Assistant</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<header class="app-navbar">
+    <div class="container navbar-inner">
+        <a href="{{ url_for('home') }}" class="brand-logo" aria-label="SmartLaptop AI Home">
+            <div class="brand-icon">
+                <svg width="22" height="22" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="brandGradRec" x1="2" y1="2" x2="26" y2="26" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#ffffff" />
+                            <stop offset="100%" stop-color="#c7d2fe" />
+                        </linearGradient>
+                    </defs>
+                    <rect x="4" y="5" width="20" height="13" rx="2" stroke="url(#brandGradRec)" stroke-width="2.2" fill="none"/>
+                    <path d="M2 20.5H26C26 21.88 24.88 23 23.5 23H4.5C3.12 23 2 21.88 2 20.5Z" fill="url(#brandGradRec)" fill-opacity="0.9"/>
+                    <line x1="11" y1="20.5" x2="17" y2="20.5" stroke="#4338ca" stroke-width="1.8" stroke-linecap="round"/>
+                    <path d="M14 8C14 10.2 15.8 11.5 17 11.5C15.8 11.5 14 12.8 14 15C14 12.8 12.2 11.5 11 11.5C12.2 11.5 14 10.2 14 8Z" fill="#ffffff"/>
+                    <circle cx="14" cy="11.5" r="1" fill="#38bdf8"/>
+                </svg>
+            </div>
+            <span class="brand-name">SmartLaptop</span><span class="brand-ai-badge">AI</span>
+        </a>
+        <div class="nav-links">
+            <a href="{{ url_for('result') }}" class="nav-btn-back">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span>Back to Summary</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+
+    <!-- Header Block -->
+    <div class="page-header-block">
+        <div class="page-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="6"></circle>
+                <circle cx="12" cy="12" r="2"></circle>
+            </svg>
+            Performance Evaluation
+        </div>
+        <h1>Workload Suitability Analysis</h1>
+        <p>Understand which computing tasks this laptop's CPU, GPU and RAM configuration can reliably handle.</p>
+    </div>
+
+    <!-- Recommendations Dashboard: Side-by-Side on Desktop -->
+    <section class="rec-dashboard">
+        <div class="rec-columns-grid">
+
+            <!-- Panel 1: Recommended For -->
+            <div class="rec-panel recommended">
+                <div class="panel-header">
+                    <div class="panel-icon-wrap">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                    </div>
+                    <h2>Recommended For</h2>
+                </div>
+                <p class="panel-subtitle">Tasks and workloads this laptop is well-equipped to handle efficiently.</p>
+
+                <ul class="workload-list">
+                    {% for item in recommended %}
+                    <li class="workload-item">
+                        <span class="item-symbol">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </span>
+                        <span>{{ item }}</span>
+                    </li>
+                    {% else %}
+                    <li class="workload-item">
+                        <span>No specific recommended workloads identified.</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- Panel 2: Not Recommended For -->
+            <div class="rec-panel not-recommended">
+                <div class="panel-header">
+                    <div class="panel-icon-wrap">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                    </div>
+                    <h2>Not Recommended For</h2>
+                </div>
+                <p class="panel-subtitle">Demanding workflows that may exceed the memory or graphical capabilities of this tier.</p>
+
+                <ul class="workload-list">
+                    {% for item in not_recommended %}
+                    <li class="workload-item">
+                        <span class="item-symbol">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </span>
+                        <span>{{ item }}</span>
+                    </li>
+                    {% else %}
+                    <li class="workload-item">
+                        <span>No hardware limitations identified for general use.</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Explanatory Disclaimer Note -->
+        <div class="rec-disclaimer-note">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; color: var(--primary);">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            <span>
+                <strong>Note on recommendations:</strong> Suitability suggestions are rule-based estimates calculated from available CPU clock tiers, system RAM thresholds and dedicated GPU presence. Sustained performance also depends on thermal design and individual application requirements.
+            </span>
+        </div>
+    </section>
+
+    <!-- Navigation Action Bar -->
+    <div class="page-bottom-actions">
+        <a href="{{ url_for('result') }}" class="btn btn-secondary btn-lg">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span>Back to Analysis Summary</span>
+        </a>
+        <a href="{{ url_for('specifications') }}" class="btn btn-secondary btn-lg">
+            <span>View Laptop Specifications</span>
+        </a>
+        <a href="{{ url_for('similar_laptops') }}" class="btn btn-primary btn-lg">
+            <span>Explore Similar Laptops</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+        </a>
+    </div>
+
+</main>
+
+<footer class="app-footer">
+    <div class="container footer-inner">
+        <div>
+            <strong>Smart Laptop Buying Assistant</strong> — Workload Suitability Engine
+        </div>
+        <div>
+            Heuristics evaluated based on industry developer & creator hardware standards.
+        </div>
+    </div>
+</footer>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
